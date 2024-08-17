@@ -22,7 +22,11 @@ test("Displays a list of movie titles", async () =>{
 
 test("Displays links for each associated movie", async () =>{
   render(<RouterProvider router={router}/>);
-  const linkList = await screen.findAllByText(/View Info/);
+
+  const linkList = await screen.findAllByText((content, Element) =>
+  element.tagName.toLowerCase() === 'a' && content.includes('view info')
+  );
+
   expect(linkList.length).toBeGreaterThan(2);
   expect(linkList[0].href).toBe("http://localhost/movie/1");
 })

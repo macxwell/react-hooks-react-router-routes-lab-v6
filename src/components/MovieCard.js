@@ -1,7 +1,11 @@
 import {Link} from 'react-router-dom';
 
-function MovieCard({title}) {
-  
+const MovieCard = ({item}) => {
+  if (!item?.id) {
+    return <div>Invalid movie data</div>;
+  }
+  const{id, title} = item;
+   
   return (
     <article>
         <h2>{title}</h2>
